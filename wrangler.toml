@@ -1,0 +1,26 @@
+name = "github-full-automation"
+main = "src/index.ts"
+compatibility_date = "2026-05-01"
+workers_dev = true
+
+[vars]
+APP_ENV = "development"
+ALLOW_LIVE_TRADING = "false"
+APPROVAL_REQUIRED = "true"
+
+# After creating D1, replace database_id.
+[[d1_databases]]
+binding = "DB"
+database_name = "business_automation"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+
+[[r2_buckets]]
+binding = "REPORTS_BUCKET"
+bucket_name = "business-automation-reports"
+
+[[queues.producers]]
+binding = "JOB_QUEUE"
+queue = "automation-jobs"
+
+[triggers]
+crons = ["0 */6 * * *"]
